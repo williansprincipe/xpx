@@ -1,0 +1,23 @@
+{ if (!ifs_)
+  { post.err << "File fail just before reading the header of region number "
+             << number() << ".\n";
+    return WRN_IFSTREAM_FAILED;
+  }
+
+  if (!(ifs_ >> energy_high_)) // first field of region
+  { if (ifs_.eof() && number() > 1)
+    { return CTRL_THERE_IS_NO_ANOTHER_REGION;
+    }
+
+    if (ifs_.eof() && number() == 1)
+    { post.err << "Unexpected enf of file before the header of region 1.\n";
+      return ERR_IFSTREAM_FAILED;
+    }
+
+    if (!ifs_.eof())
+    { post.err << "File fail while trying to read the first value of "
+               << "the header of the region number " << number() << ".\n";
+      return ERR_IFSTREAM_FAILED;
+    }
+  }
+}

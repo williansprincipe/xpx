@@ -1,0 +1,39 @@
+silly changes
+Change cout for post.msg in Plot2DTest and PostTest.
+
+Bugs
+
+1. When one fires testpost --helpx
+   or             testpost --createlogfiles
+   or             testpost --(option with vvMUSTNOTEXIST but gives an justaposed option)
+                  there is the problem showed bellow.
+
+willians@dracula:~/src$ testpost --createlogfiles
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+Error!  Option "--createlogfile" doesn't need and doesn' admit value.
+^Cwillians@dracula:~/src$ ^C
+willians@dracula:~/src$ ^C
+willians@dracula:~/src$ testpost --createlogfils
+Error! Unknown option '--createlogfils'.
+ParserTests
+2015-10-25 07h 03min
+things...
+
+20151102201100
+2. Parse is crawded of error messages and debug messages.
+3. dbg cant use msg, dbg or err for while.
+   maybe I should derreference this as post to use these brother
+   members of post.
+

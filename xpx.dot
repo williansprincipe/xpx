@@ -1,0 +1,56 @@
+// ph.dot
+// wpfernandes 2015-08-19 13h51min
+//
+digraph "ph"
+{ 
+  newrank=true;
+  compound=true;
+  node [shape=plaintext]
+
+  subgraph cluster1
+  { label = "Ph" fillcolor=azure1 style=filled;
+// ----------------------------------------------------------------------------    
+    subgraph cluster11 // xpsplots
+    { label = "vector<XPSFile==LNLSFile> xps_files_  xps_file" fillcolor=azure2 style=filled;
+      xpsfilevars [label="file_name\nexperiment\n\nread()\nwrite()"];
+      subgraph cluster111 // regions
+      { label = "std::vector<Region> regions_  region" fillcolor=azure3 style=filled;
+        subgraph cluster1111 // regiondata
+        { label = "members of xps data of one region" style=dotted;
+          regiondatamembers [label="energy_high_, energy_low_\nenergy_step_, scans_\ndwell_, energypass_\nvector<double> counts_"]
+        }
+        subgraph cluster1112 // toxps
+        { label = "members related to xps" fillcolor=azure3 style=dotted;
+          toxps [label="std::vector<double> shirley_backgrounds_\nstd::vector<point>points_ (simulated)\npoints_iterator()\npoint={energy, count, shirley_background}"]
+          subgraph cluster11121 // xpsplots
+          { label = "std::vector<Plot2D> plot2ds plot2d" fillcolor=azure4 style=filled;
+            xpsplotmembers [label="&points_\n\ngenPpl()"];
+            subgraph cluster111211 // xpsplotdata
+            { label = "plot_config_data" fillcolor=azure3; color=black; style=dashed;
+              xpsplotdatamembers [label="title, xlabel\nylabel, xrange\nreversed"];
+            }
+          }
+        }
+        subgraph cluster1113 // xpsplot
+        { label = "members for export to xpd" fillcolor=azure3 style=dotted;
+          forexporttoxpd [label="bellfitvars_\narea_\ntheta(), phi(), area()"]
+        }
+      }
+    }
+// ----------------------------------------------------------------------------    
+    subgraph cluster12 // toxpd
+    { label = "group of members related to xpd" fillcolor=azure3 style=dotted;
+      toxpd[label="std::vector<point>theta_phi_points_\ntheta_phi_point_iterator(), area()\npoints_iterator()"];
+      subgraph cluster121 // xpdplots
+      { label = "std::vector<XPDPlot> xpd_plots_  xpd_plot" fillcolor=azure4 style=filled;
+        xpdplotmembers [label="&points_\nexperiment\n\ngenPplPizza()\ngenExpFile()"];
+        subgraph cluster1211 // xpdplotdata
+        { label = "xpd_plot_data" style=dashed;
+          xpdplotdatamembers [label="title, xlabel\nylabel, xrange\nreversed"];
+        }
+      }
+      toxpd -> xpdplotmembers [style=invis]
+    }
+  }
+  regiondatamembers -> toxps -> {xpsplotmembers xpsplotdatamembers} -> forexporttoxpd -> toxpd -> {xpdplotmembers xpdplotdatamembers} [style=invis]
+} // end of file lnlstopyxplot.dot

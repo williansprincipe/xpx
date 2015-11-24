@@ -1,0 +1,41 @@
+Important:
+  Check area value;!!!!
+  log - fit error!!!
+Region.h:27
+  bound check for XPSData::Sequences_row
+meta:
+  debug_msg_stack
+  err_msg_stack
+Parser:
+  remove valtypeEnum
+General:
+-test plot only data and plot script + data
+-correct cammel Fit -> fit  Shirley -> shirley ...
+-transfer genDefaltPlot2D from Region to Plot2D as another constructor
+change settings to convert strings to enum on reading and vice versa
+on writing and so only use enum within the program.
+encapsulate settings and all global stuff together with post in some control
+class and make the objects robust so that they can compile and run without
+this class
+
+Check if is necessary separate dbg from post.
+    But keep its declaration in post.h.
+
+This is NOT good!
+It's a waste of time
+It's hard to maintain
+Programmers should be able to understand the behavior from code and to write
+small piece of code for debug IF NECESSARY.
++----
+| - each class could have a static member function that return info about the it
+|   for debug and development purposes.
+| - each class could have a member function that writes to ostream& argument the
+|   content of the object in a human readable form (a serialization). For debug
+|   and development purposes.
++----
+
+Fails worthing be noted must have a place holder (status) in the object or
+  class at which the failing code register the description and a code. These
+  information can be read (pull) by the caller afterwards.
+Region:
+  write setters and getters
