@@ -32,7 +32,7 @@ set window=40
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/src
+cd ~/xpx
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -59,7 +59,7 @@ badd +2 TestPost.h
 badd +57 TestPost.cc
 badd +26 TestPostmain.cc
 badd +4 TestPostmake
-badd +1 ~/archive/srcold2/Post.h
+badd +1 ~/archive/xpxold2/Post.h
 badd +307 Parser.cc
 badd +1 Parser.h
 badd +13 util.cc
@@ -102,8 +102,8 @@ badd +1 RegionTestmain.cc
 badd +1 RegionTest.make
 badd +23 .clang-format
 badd +25 MA26_-18_ERR03.51
-badd +1 ~/archive/01srcold/xps/lnlstopyxplot/src/lnlstopyxplot.cc
-badd +1 ~/archive/01srcold/pd/reduce_stand_alone/reduce_stand_alone.cc
+badd +1 ~/archive/01xpxold/xps/lnlstopyxplot/xpx/lnlstopyxplot.cc
+badd +1 ~/archive/01xpxold/pd/reduce_stand_alone/reduce_stand_alone.cc
 badd +19 ~/.ph.conf
 badd +1 Settings.cc
 badd +1 Settings.h
@@ -126,11 +126,13 @@ badd +18 Ph.make
 badd +1 Phmain.cc
 badd +1 Help.h
 badd +1 Help.cc
-badd +0 xpx.dot
-badd +0 Xpx.cc
-badd +0 Xpx.h
-badd +0 Xpx.make
-badd +0 Xpxmain.cc
+badd +1 xpx.dot
+badd +104 Xpx.cc
+badd +1 Xpx.h
+badd +1 Xpx.make
+badd +1 Xpxmain.cc
+badd +1 ~/archive/01srcold/pd/reduce_stand_alone/reduce_stand_alone.cc
+badd +10 wtmp2
 args ph.dot
 edit xpx.dot
 set splitbelow splitright
@@ -239,7 +241,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 19) / 39)
+let s:l = 1 - ((0 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -352,13 +354,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 141 - ((0 * winheight(0) + 19) / 39)
+let s:l = 134 - ((20 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-141
-normal! 013|
-tabedit Plot2D.h
+134
+normal! 052|
+lcd ~/xpx
+tabedit ~/xpx/Plot2D.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -368,8 +371,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -471,15 +474,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 63 - ((0 * winheight(0) + 19) / 38)
+let s:l = 63 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 63
 normal! 023|
+lcd ~/xpx
 wincmd w
 argglobal
-edit Plot2D.cc
+edit ~/xpx/Plot2D.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -580,16 +584,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 16 - ((0 * winheight(0) + 19) / 38)
+let s:l = 16 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 16
 normal! 0
+lcd ~/xpx
 wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
-tabedit Region.h
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+tabedit ~/xpx/Region.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -599,8 +604,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -702,15 +707,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((0 * winheight(0) + 19) / 38)
+let s:l = 4 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 4
 normal! 0
+lcd ~/xpx
 wincmd w
 argglobal
-edit Region.cc
+edit ~/xpx/Region.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -811,16 +817,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 29 - ((0 * winheight(0) + 19) / 38)
+let s:l = 29 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 29
 normal! 028|
+lcd ~/xpx
 wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
-tabedit LNLSFile.h
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+tabedit ~/xpx/LNLSFile.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -830,8 +837,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -933,16 +940,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 53 - ((35 * winheight(0) + 19) / 38)
+let s:l = 53 - ((37 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 53
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/LNLSFile.cc
+edit ~/xpx/LNLSFile.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -1043,17 +1050,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 175 - ((36 * winheight(0) + 19) / 38)
+let s:l = 175 - ((38 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 175
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
-tabedit ~/src/Help.h
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
+tabedit ~/xpx/Help.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1063,8 +1070,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 85 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 83 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 86 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 83 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1166,16 +1173,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 17 - ((16 * winheight(0) + 19) / 38)
+let s:l = 17 - ((16 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 17
 normal! 012|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Help.cc
+edit ~/xpx/Help.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -1276,17 +1283,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 20 - ((19 * winheight(0) + 19) / 38)
+let s:l = 20 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 20
 normal! 021|
-lcd ~/src
+lcd ~/xpx
 wincmd w
-exe 'vert 1resize ' . ((&columns * 85 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 83 + 84) / 169)
-tabedit ~/src/Xpx.h
+exe 'vert 1resize ' . ((&columns * 86 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 83 + 85) / 170)
+tabedit ~/xpx/Xpx.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1296,8 +1303,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 84 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 84 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 84 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1399,16 +1406,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 7 - ((6 * winheight(0) + 19) / 38)
+let s:l = 65 - ((24 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
-normal! 011|
-lcd ~/src
+65
+normal! 015|
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Xpx.cc
+edit ~/xpx/Xpx.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -1509,18 +1516,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 43 - ((19 * winheight(0) + 19) / 38)
+let s:l = 1 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
+1
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 84 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 84 + 84) / 169)
-tabedit ~/src/Xpxmain.cc
+exe 'vert 1resize ' . ((&columns * 84 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 85 + 85) / 170)
+tabedit ~/xpx/Xpxmain.cc
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1530,8 +1536,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 84 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 84 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 84 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1633,16 +1639,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 47 - ((37 * winheight(0) + 19) / 38)
+let s:l = 47 - ((39 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 47
 normal! 03|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Xpx.make
+edit ~/xpx/Xpx.make
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -1743,18 +1749,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 23 - ((22 * winheight(0) + 19) / 38)
+let s:l = 23 - ((22 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 23
 normal! 03|
-lcd ~/src
+lcd ~/xpx
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 84 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 84 + 84) / 169)
-tabedit ~/src/Parser.h
+exe 'vert 1resize ' . ((&columns * 85 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 84 + 85) / 170)
+tabedit ~/xpx/Parser.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1764,8 +1769,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 88 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 80 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 89 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 80 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1867,16 +1872,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 93 - ((26 * winheight(0) + 19) / 38)
+let s:l = 93 - ((27 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 93
 normal! 06|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Parser.cc
+edit ~/xpx/Parser.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -1977,18 +1982,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 289 - ((21 * winheight(0) + 19) / 38)
+let s:l = 289 - ((22 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 289
 normal! 014|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 88 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 80 + 84) / 169)
-tabedit ~/src/Post.h
+exe 'vert 1resize ' . ((&columns * 89 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 80 + 85) / 170)
+tabedit ~/xpx/Post.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1998,8 +2003,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -2101,16 +2106,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 3 - ((0 * winheight(0) + 19) / 38)
+let s:l = 3 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 3
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Post.cc
+edit ~/xpx/Post.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -2211,18 +2216,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 19) / 38)
+let s:l = 3 - ((2 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 3
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
-tabedit ~/src/todo
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
+tabedit ~/xpx/todo
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -2329,15 +2334,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 9 - ((2 * winheight(0) + 19) / 39)
+let s:l = 9 - ((2 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 9
 normal! 07|
-lcd ~/src
+lcd ~/xpx
 2wincmd w
-tabedit ~/src/MA26_-18.51
+tabedit ~/xpx/MA26_-18.51
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -2444,15 +2449,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 38 - ((2 * winheight(0) + 19) / 39)
+let s:l = 38 - ((2 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 38
 normal! 0
-lcd ~/src
+lcd ~/xpx
 2wincmd w
-tabedit ~/src/util.h
+tabedit ~/xpx/util.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -2462,8 +2467,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -2565,16 +2570,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 3 - ((0 * winheight(0) + 19) / 38)
+let s:l = 3 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 3
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/util.cc
+edit ~/xpx/util.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -2675,18 +2680,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 19) / 38)
+let s:l = 3 - ((2 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 3
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 87 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 81 + 84) / 169)
-tabedit ~/src/globalVals.h
+exe 'vert 1resize ' . ((&columns * 88 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 81 + 85) / 170)
+tabedit ~/xpx/globalVals.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -2696,8 +2701,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -2799,16 +2804,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 15 - ((13 * winheight(0) + 19) / 38)
+let s:l = 63 - ((39 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 06|
-lcd ~/src
+63
+normal! 03|
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/globalVals.cc
+edit ~/xpx/globalVals.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -2909,18 +2914,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 19) / 38)
+let s:l = 1 - ((0 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+1
 normal! 0
-lcd ~/src
+lcd ~/xpx
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
-tabedit ~/src/Settings.h
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+tabedit ~/xpx/Settings.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -2930,8 +2935,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -3033,16 +3038,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 63 - ((36 * winheight(0) + 19) / 38)
+let s:l = 63 - ((38 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 63
 normal! 02|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 argglobal
-edit ~/src/Settings.cc
+edit ~/xpx/Settings.cc
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -3143,18 +3148,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 102 - ((18 * winheight(0) + 19) / 38)
+let s:l = 102 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 102
 normal! 023|
-lcd ~/src
+lcd ~/xpx
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 84) / 169)
-exe 'vert 2resize ' . ((&columns * 82 + 84) / 169)
-tabnext 7
+exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+tabnext 9
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
 endif

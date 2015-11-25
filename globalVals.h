@@ -59,6 +59,8 @@ enum rvEnum
   ERR_FILE_WRITING,
   ERR_UNABLE_TO_OPEN_OUTPUT_DATA_FILE,
   ERR_UNABLE_TO_OPEN_OUTPUT_SCRIPT_FILE,
+  ERR_THETA_EXTRACTING_FAILED,
+  ERR_PHI_EXTRACTING_FAILED,
 //    err_oap_vvMUSTEXIST,// error option argument parser value validation must exist
 //    err_oap_vvMUSTNOTEXIST,
 //    err_oap_fvMUSTEXIST,
