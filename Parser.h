@@ -75,10 +75,10 @@ class Parser //--------------------------------------------------
   { options_.emplace_back(id, value);
   }
   int checkArguments();
-  rvEnum parse(std::vector<std::string> cmd_line_args_buffer);
+  ctrlEnum parse(std::vector<std::string> cmd_line_args_buffer);
   void eraseFirstArgument() { if (!args_.empty()) args_.erase(args_.begin()); }
   bool has_option(std::string option);
-  rvEnum preproccessOptions();
+  ctrlEnum preproccessOptions();
   std::string replaceArgName(std::string error_msg, const std::string& this_arg);
   std::vector<OptionStruct>::const_iterator optionsBegin()
   { return options_.begin(); }

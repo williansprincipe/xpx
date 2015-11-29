@@ -14,7 +14,7 @@
 #include <gsl/gsl_multifit_nlin.h>
 #include <gsl/gsl_sf_pow_int.h> // gaussian_f
 
-rvEnum Region::genDefaultPlot2D() // ----------------------------------------
+ctrlEnum Region::genDefaultPlot2D() // ----------------------------------------
 { post.dbg << __FILE__ << ":" << __LINE__ << ": " << "Begin of add_plot2.\n";
   if (sequences().empty())
   { post.err << "Unabel to create a plot to region number " << number() \
@@ -59,7 +59,7 @@ rvEnum Region::genDefaultPlot2D() // ----------------------------------------
 }
 
 // ============================================================================
-rvEnum Region::read_header() // -----------------------------------------------
+ctrlEnum Region::read_header() // -----------------------------------------------
 { if (!ifs_)
   { post.err << "File fail just before reading the header of region number "
              << number() << ".\n";
@@ -121,7 +121,7 @@ void Region::set_after_read_header() // ---------------------------------------
   set_default_plot2d_sequences_names();
 }
 
-rvEnum Region::load_counts() // -----------------------------------------------
+ctrlEnum Region::load_counts() // -----------------------------------------------
 { post.dbg << "Just before read counts. n_counts_ = " << n_counts_\
            << ", ifs_ = " << (ifs_? "true" : "false") << ".\n";
   if (settings("load_mode") != "xps" && settings("load_mode") != "xpd")
@@ -163,7 +163,7 @@ rvEnum Region::load_counts() // -----------------------------------------------
   return SUCCESS;
 }
 
-rvEnum Region::Smooth(unsigned int n_iteractions) // --------------------------
+ctrlEnum Region::Smooth(unsigned int n_iteractions) // --------------------------
 { //need check n_iteractions < 0
   std::vector<std::vector<double>>& m = sequences().values_matrix(); // simplify
   if (n_iteractions == 0 || m.size() < 3) // just copy
@@ -203,7 +203,7 @@ rvEnum Region::Smooth(unsigned int n_iteractions) // --------------------------
   return SUCCESS;
 }
 
-rvEnum Region::Shirley(unsigned int n_iteractions) // ----------------------------------
+ctrlEnum Region::Shirley(unsigned int n_iteractions) // ----------------------------------
 { //need check n_iteractions < 0
   std::vector<std::vector<double>>& m = sequences().values_matrix(); // simplify
 
@@ -340,7 +340,7 @@ rvEnum Region::Shirley(unsigned int n_iteractions) // --------------------------
   return GSL_SUCCESS;
 }
 
-rvEnum Region::Fit(unsigned int max_n_iters)  // ----------------------------------
+ctrlEnum Region::Fit(unsigned int max_n_iters)  // ----------------------------------
 { //need check n_iteractions < 0
   std::vector<std::vector<double>>& m = sequences().values_matrix(); // simplify
 
@@ -422,8 +422,8 @@ void Region::set_after_load_counts() // ---------------------------------------
   }
 }
 
-rvEnum Region::load() // ------------------------------------------------------
-{ { rvEnum r_v;
+ctrlEnum Region::load() // ------------------------------------------------------
+{ { ctrlEnum r_v;
     if ( (r_v = read_header()) != SUCCESS )
     { post.err << "Fail to read the region header.\n";
       return r_v;
@@ -432,7 +432,7 @@ rvEnum Region::load() // ------------------------------------------------------
 
   set_after_read_header();
 
-  { rvEnum r_v;
+  { ctrlEnum r_v;
     if ( (r_v = load_counts()) != SUCCESS )
      { post.err << "Fail to read counts.\n";
        return r_v;

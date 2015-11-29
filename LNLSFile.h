@@ -21,11 +21,11 @@ class LNLSFile
            settings(settings), post(post), args(args) { }
  ~LNLSFile()=default;
 
-  rvEnum read_header();
-  rvEnum check_for_another_region();
-  rvEnum read_regions();
-  rvEnum load_file();
-  rvEnum setNRegionAndRegionNameAtEachRegion();
+  ctrlEnum read_header();
+  ctrlEnum check_for_another_region();
+  ctrlEnum read_regions();
+  ctrlEnum load_file();
+  ctrlEnum setNRegionAndRegionNameAtEachRegion();
   void genAll();
   void writeAll();
 
@@ -34,7 +34,7 @@ class LNLSFile
   void displayPlot2DsInfo(std::vector<Plot2D>& plot2ds);
   void displayRegionInfo(Region& region);
   void displayRegionsInfo();
-  rvEnum doTest();
+  ctrlEnum doTest();
 
   void source_file_name(const std::string& source_file_name)
   { source_file_name_ = source_file_name; }

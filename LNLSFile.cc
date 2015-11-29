@@ -11,8 +11,8 @@
 #include <vector>
 #include <iomanip>
 
-rvEnum LNLSFile::read_header() // -------------------------------------------
-{ rvEnum r_v = SUCCESS;
+ctrlEnum LNLSFile::read_header() // -------------------------------------------
+{ ctrlEnum r_v = SUCCESS;
   
   ifs_.open(source_file_name());
   if (!ifs_)
@@ -49,7 +49,7 @@ rvEnum LNLSFile::read_header() // -------------------------------------------
   return r_v;
 }
 
-rvEnum LNLSFile::check_for_another_region() // ----------------------------------
+ctrlEnum LNLSFile::check_for_another_region() // ----------------------------------
 { if (!ifs_)
   { return WRN_IFSTREAM_FAILED;
   }
@@ -67,14 +67,14 @@ rvEnum LNLSFile::check_for_another_region() // ---------------------------------
   return CTRL_YES; // assumed 
 }
 
-rvEnum LNLSFile::read_regions() // ------------------------------------------
+ctrlEnum LNLSFile::read_regions() // ------------------------------------------
 { if (!ifs_) 
   { post.dbg << "read_regions() function called with istream.fail()==true.\n";
     return ERR_IFSTREAM_FAILED;
   }
   while (ifs_)
   { post.dbg << "=======> Before reading a region.\n";
-    rvEnum there_is_a_region_ahead = check_for_another_region();
+    ctrlEnum there_is_a_region_ahead = check_for_another_region();
     switch (there_is_a_region_ahead)
     { case WRN_IFSTREAM_FAILED:
       { continue;
@@ -101,7 +101,7 @@ rvEnum LNLSFile::read_regions() // ------------------------------------------
         Region region_buf(settings, post, source_file_name(),
                           regions_.size() + 1, ifs_, file_name_prefix);
 
-        { rvEnum r_v;
+        { ctrlEnum r_v;
           if ((r_v = region_buf.load()) != SUCCESS)
           { post.err << "Fail to read region number "
                      << region_buf.number() << ".\n";
@@ -124,7 +124,7 @@ rvEnum LNLSFile::read_regions() // ------------------------------------------
   return SUCCESS;
 }
 
-rvEnum LNLSFile::setNRegionAndRegionNameAtEachRegion()
+ctrlEnum LNLSFile::setNRegionAndRegionNameAtEachRegion()
 { 
   std::string aux(source_file_name());
   std::replace(aux.begin(), aux.end(), '.', '_');
@@ -142,8 +142,8 @@ rvEnum LNLSFile::setNRegionAndRegionNameAtEachRegion()
   return SUCCESS;
 }
 
-rvEnum LNLSFile::load_file() // ---------------------------------------------
-{ { rvEnum r_v;
+ctrlEnum LNLSFile::load_file() // ---------------------------------------------
+{ { ctrlEnum r_v;
     if ((r_v = read_header()) != SUCCESS)
     { //r_v = ERR_UNABLE_TO_READ_FILE_HEADER;
       post.err << "Fail to read file header.\n";
@@ -151,7 +151,7 @@ rvEnum LNLSFile::load_file() // ---------------------------------------------
     }
   }
 
-  { rvEnum r_v;
+  { ctrlEnum r_v;
     if ((r_v = read_regions()) != SUCCESS)
     { //r_v = ERR_UNABLE_TO_READ_FILE_REGIONS;
       post.err << "Fail to read one of the regions.\n";
@@ -281,7 +281,7 @@ void LNLSFile::displayRegionsInfo()
 
 // ============================================================================
 // ============================================================================
-rvEnum LNLSFile::doTest() // ------------------------------------------------
+ctrlEnum LNLSFile::doTest() // ------------------------------------------------
 { post.msg << "LNLSFile\n";
   post.msg << utl::time_string("%Y-%m-%d %Hh %Mmin") << "\n";
 
@@ -290,7 +290,7 @@ rvEnum LNLSFile::doTest() // ------------------------------------------------
 
   post.msg << "\nReading... ===============================================\n";
 
-  { rvEnum r_v;
+  { ctrlEnum r_v;
     if ((r_v = load_file()) != SUCCESS)
     { post.err << "Error. Fail to read file \"" << source_file_name() << "\".\n";
       return r_v;

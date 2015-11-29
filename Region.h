@@ -64,12 +64,12 @@ class Region
   ~Region() = default;
 
   // exposed member functions =================================================
-  rvEnum load(); // load = read_header + set label + load_counts
-//  rvEnum Shirley();
+  ctrlEnum load(); // load = read_header + set label + load_counts
+//  ctrlEnum Shirley();
   void plot2ds_add_move(Plot2D& plot2d) // also used by add_default_plot2d
   { plot2ds_.push_back(std::move(plot2d));
   }
-  rvEnum genDefaultPlot2D();
+  ctrlEnum genDefaultPlot2D();
   void genOnePlotPerRegion();
   void genOnePlotScriptPerPlot();
   void writeAll();
@@ -130,19 +130,19 @@ class Region
   int n_regions_; // I chose to keep one copy per region
 
   // members functions called internally by load.
-  rvEnum read_header(); 
+  ctrlEnum read_header(); 
   void set_default_plot2d_sequences_names();
   void set_after_read_header();
   // load_mode value makes load_counts create different number of sequences
   // lmXPS: 3 (energy, count, count/s);
   // lmXPD: 6 (energy, count, count/s, smooth, shirley, smooth_minus_shirley).
-  rvEnum load_counts(); 
+  ctrlEnum load_counts(); 
   void set_after_load_counts();
 
   // members functions called internally by load_counts.
-  rvEnum Smooth(unsigned int n_iteractions); // iif load_mode == lmXPD
-  rvEnum Shirley(unsigned int n_iteractions);
-  rvEnum Fit(unsigned int max_n_iters);
+  ctrlEnum Smooth(unsigned int n_iteractions); // iif load_mode == lmXPD
+  ctrlEnum Shirley(unsigned int n_iteractions);
+  ctrlEnum Fit(unsigned int max_n_iters);
 
   // members of xps data of one region row 1
   double energy_high_;

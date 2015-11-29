@@ -11,7 +11,7 @@
 
 // declarations and definitions
 typedef std::vector<std::vector<double>>::size_type vsz_t; 
-enum rvEnum
+enum ctrlEnum
 { SUCCESS, NORMAL, NONE, UNKNOWN,
   CTRL_YES,
   CTRL_NO,

@@ -25,14 +25,14 @@ class Plot2D
   ~Plot2D() = default;
 
   // service member functions =================================================
-  rvEnum writePlot();
-  rvEnum writePlotAs(const std::string& script_file_name);
+  ctrlEnum writePlot();
+  ctrlEnum writePlotAs(const std::string& script_file_name);
 
   // exposed member functions =================================================
   void script_file_path(Poco::Path script_file_path)
   { script_file_path_ = script_file_path;
   }
-  rvEnum script_file_path_parse(std::string script_file_path_string);
+  ctrlEnum script_file_path_parse(std::string script_file_path_string);
   const std::string& script_file_name()
   { return script_file_path_.getFileName();
   }
@@ -58,7 +58,7 @@ class Plot2D
   void data_file_path(Poco::Path data_file_path)
   { data_file_path_ = data_file_path;
   }
-  rvEnum data_file_path_parse(std::string script_file_path_string);
+  ctrlEnum data_file_path_parse(std::string script_file_path_string);
   const std::string& data_file_name()
   { return data_file_path_.getFileName();
   }
@@ -132,10 +132,10 @@ class Plot2D
   Post& post;
 
   // internal member functions used by writePlot()
-  rvEnum writeScriptHeader(std::ofstream& ofs);
-  rvEnum writeScript(std::ofstream& ofs);
-  rvEnum writeData(std::ofstream& ofs);
-  rvEnum writeEmbeddedData(std::ofstream& ofs);
+  ctrlEnum writeScriptHeader(std::ofstream& ofs);
+  ctrlEnum writeScript(std::ofstream& ofs);
+  ctrlEnum writeData(std::ofstream& ofs);
+  ctrlEnum writeEmbeddedData(std::ofstream& ofs);
 
   Sequences& sequences_;
   std::vector<std::string>  custom_sequences_names_;

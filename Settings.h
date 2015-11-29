@@ -49,7 +49,10 @@ enum class kv
   UNSIGNED_INT_MAXIMUM_NUMBER_OF_ITERACTIONS               = 36,
   DEFAULT_XPD_DIRECTORY_NAME                               = 37,
   CONFIG_FILE_PATH_AND_NAME                                = 38,
-  TO_AUTOMATIZE_LAST_KNOWN                                 = 39,
+  LOG_ERROR_EXTRACTING_ANGLES_FROM_FILE_NAME               = 39,
+  LOG_ERROR_PROCESSING_REGION                              = 40,
+  LOG_ERROR_PROCESSING_FILE                                = 41,
+  TO_AUTOMATIZE_LAST_KNOWN                                 = 42,
   TO_RESERVE_ROOM                                          = 1023
 };
 
@@ -61,8 +64,7 @@ class Settings
  std::string operator() (const std::string& key);
  private:
   void debug(std::string file_name, int line);
-  void predefine_settings();
-  void load_settings();
+  void predefine_settings(); void load_settings();
   int number_of_settings_ = static_cast<int>(kv::TO_AUTOMATIZE_LAST_KNOWN);
   std::map<std::string, kv> keys_;
   std::map<kv, std::string> settings_;

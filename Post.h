@@ -54,7 +54,7 @@ namespace my
 
 class Post
 {public:
-  Post() : log("log.log"),
+  Post() : log("xpx.log"),
            dbg(std::cout),
            msg(std::cout),
            wrn(std::cerr),

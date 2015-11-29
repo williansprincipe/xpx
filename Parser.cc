@@ -36,7 +36,7 @@ void Parser::addArgControl(int index, valtypeEnum value_type,
 }
 
 int Parser::gatherOptions(std::vector<std::string>& cmd_line_args_buffer)
-{ rvEnum return_value = UNKNOWN;
+{ ctrlEnum return_value = UNKNOWN;
   if (!controls_.empty())
   { auto it1 = cmd_line_args_buffer.begin();
     while (it1 != cmd_line_args_buffer.end())
@@ -195,7 +195,7 @@ std::string Parser::replaceArgName(std::string error_msg,
 }
 
 int Parser::checkArguments()
-{ rvEnum return_value;
+{ ctrlEnum return_value;
   for (auto& arg_control : args_controls_)
   { if (args_size() > arg_control.index)
     { std::string this_arg = arg(arg_control.index);
@@ -283,7 +283,7 @@ int Parser::checkArguments()
   return return_value;
 }
 
-rvEnum Parser::parse(std::vector<std::string> cmd_line_args_buffer)
+ctrlEnum Parser::parse(std::vector<std::string> cmd_line_args_buffer)
 { gatherOptions(cmd_line_args_buffer);
   if (args_size() == 1)
   { help.brief();
@@ -307,7 +307,7 @@ bool Parser::has_option(std::string option_id)
   return found;
 }
 
-rvEnum Parser::preproccessOptions()  // some options set or unset flags
+ctrlEnum Parser::preproccessOptions()  // some options set or unset flags
 { 
   if (has_option("-h")||has_option("--help"))
   { return CTRL_STOP;

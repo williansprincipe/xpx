@@ -1,0 +1,5 @@
+Error while extracting theta from file_name "template".
+Error while extracting theta from file_name "gen_lnls_files_names".
+The directory "raw" was identified as a XPD directory.
+  It has 31850, from which 31848 have typical LNLS file names.
+  Intervals (degrees): 0 < theta < 79 and 0 < phi < 79.

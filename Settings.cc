@@ -104,7 +104,19 @@ void Settings::predefine_settings()
   settings_[kv::DEFAULT_XPD_DIRECTORY_NAME] = "raw";
 
   keys_["config_file_path_and_name"] = kv::CONFIG_FILE_PATH_AND_NAME;
-  settings_[kv::CONFIG_FILE_PATH_AND_NAME] = "/home/willians/.ph.conf";
+  settings_[kv::CONFIG_FILE_PATH_AND_NAME] = "/home/willians/.xpx.conf";
+
+  keys_["log_error_extracting_angles_from_file_name"] =
+      kv::LOG_ERROR_EXTRACTING_ANGLES_FROM_FILE_NAME;
+  settings_[kv::LOG_ERROR_EXTRACTING_ANGLES_FROM_FILE_NAME] = "yes";
+
+  keys_["log_error_processing_region"] =
+      kv::LOG_ERROR_PROCESSING_REGION;
+  settings_[kv::LOG_ERROR_PROCESSING_REGION] = "yes";
+
+  keys_["log_error_processing_file"] =
+      kv::LOG_ERROR_PROCESSING_FILE;
+  settings_[kv::LOG_ERROR_PROCESSING_FILE] = "yes";
 }
 
 void Settings::load_settings()

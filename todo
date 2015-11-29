@@ -9,6 +9,7 @@ meta:
 Parser:
   remove valtypeEnum
 General:
+-member function xpx::test_if_file_name_is_typical_lnls()
 -test plot only data and plot script + data
 -correct cammel Fit -> fit  Shirley -> shirley ...
 -transfer genDefaltPlot2D from Region to Plot2D as another constructor

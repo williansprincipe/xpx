@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
   Parser parser(settings, post, help);
   addOptionsAndArgumentsControls(parser);
   std::vector<std::string> cmd_line_args(argv,argv+argc);
-  { rvEnum run_ctrl = parser.parse(cmd_line_args);
+  { ctrlEnum run_ctrl = parser.parse(cmd_line_args);
     if (run_ctrl == CTRL_STOP)
     { return SUCCESS;
     }
