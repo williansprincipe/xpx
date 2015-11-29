@@ -11,10 +11,10 @@
 #include <vector>
 #include <iomanip>
 
-ctrlEnum LNLSFile::read_header() // -------------------------------------------
+ctrlEnum LNLSFile::open_file_and_read_header() // -------------------------------------------
 { ctrlEnum r_v = SUCCESS;
   
-  ifs_.open(source_file_name());
+  ifs_.open(path_to_string());
   if (!ifs_)
   { r_v = ERR_UNABLE_TO_OPEN_FILE;
     post.err << "Unable to open file \"" << source_file_name()
@@ -67,9 +67,9 @@ ctrlEnum LNLSFile::check_for_another_region() // -------------------------------
   return CTRL_YES; // assumed 
 }
 
-ctrlEnum LNLSFile::read_regions() // ------------------------------------------
+ctrlEnum LNLSFile::load_regions() // ------------------------------------------
 { if (!ifs_) 
-  { post.dbg << "read_regions() function called with istream.fail()==true.\n";
+  { post.dbg << "load_regions() function called with istream.fail()==true.\n";
     return ERR_IFSTREAM_FAILED;
   }
   while (ifs_)
@@ -142,9 +142,9 @@ ctrlEnum LNLSFile::setNRegionAndRegionNameAtEachRegion()
   return SUCCESS;
 }
 
-ctrlEnum LNLSFile::load_file() // ---------------------------------------------
+ctrlEnum LNLSFile::load() // ---------------------------------------------
 { { ctrlEnum r_v;
-    if ((r_v = read_header()) != SUCCESS)
+    if ((r_v = open_file_and_read_header()) != SUCCESS)
     { //r_v = ERR_UNABLE_TO_READ_FILE_HEADER;
       post.err << "Fail to read file header.\n";
       return r_v;
@@ -152,7 +152,7 @@ ctrlEnum LNLSFile::load_file() // ---------------------------------------------
   }
 
   { ctrlEnum r_v;
-    if ((r_v = read_regions()) != SUCCESS)
+    if ((r_v = load_regions()) != SUCCESS)
     { //r_v = ERR_UNABLE_TO_READ_FILE_REGIONS;
       post.err << "Fail to read one of the regions.\n";
       return r_v;
@@ -285,13 +285,15 @@ ctrlEnum LNLSFile::doTest() // ------------------------------------------------
 { post.msg << "LNLSFile\n";
   post.msg << utl::time_string("%Y-%m-%d %Hh %Mmin") << "\n";
 
-  source_file_name( args.size() < 2? "MA26_-18_OK.51" : args[1]);
-  post.msg << "Source file: \"" << source_file_name() << "\".\n";
+  source_file_name("MA26_-18_OK.51");
+
+//  source_file_name( args.size() < 2? "MA26_-18_OK.51" : args[1]);
+//  post.msg << "Source file: \"" << source_file_name() << "\".\n";
 
   post.msg << "\nReading... ===============================================\n";
 
   { ctrlEnum r_v;
-    if ((r_v = load_file()) != SUCCESS)
+    if ((r_v = load()) != SUCCESS)
     { post.err << "Error. Fail to read file \"" << source_file_name() << "\".\n";
       return r_v;
     }
