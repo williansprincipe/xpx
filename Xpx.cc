@@ -374,6 +374,7 @@ void Xpx::lnls_files_meta_infos_sort()
 ctrlEnum Xpx::lnls_files_add(LNLSFileMetaInfo f_i)
 { LNLSFile lnls_file(settings, post, instant_input_directory(), f_i.name());
   lnls_file.load();
+  // HERE HERE HERE HERE 
   return SUCCESS;
 }
 
