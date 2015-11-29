@@ -52,7 +52,9 @@ enum class kv
   LOG_ERROR_EXTRACTING_ANGLES_FROM_FILE_NAME               = 39,
   LOG_ERROR_PROCESSING_REGION                              = 40,
   LOG_ERROR_PROCESSING_FILE                                = 41,
-  TO_AUTOMATIZE_LAST_KNOWN                                 = 42,
+  LOG_ABOUT_DIRECTORY                                      = 42,
+  AUTO                                                     = 43,
+  TO_AUTOMATIZE_LAST_KNOWN                                 = 44,
   TO_RESERVE_ROOM                                          = 1023
 };
 
@@ -62,6 +64,7 @@ class Settings
  ~Settings() = default;
  std::string operator() (kv key);
  std::string operator() (const std::string& key);
+ std::string& operator[] (const kv& key);
  private:
   void debug(std::string file_name, int line);
   void predefine_settings(); void load_settings();

@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <limits>
+#include <map>
 
 void Settings::debug(std::string file_name, int line)
 { std::cout << "Debug: " << file_name << ":" << line << '\n';
@@ -87,7 +88,7 @@ void Settings::predefine_settings()
   settings_[kv::IMAGE_TYPE] = "pdf";
 
   keys_["load_mode"] = kv::LOAD_MODE;
-  settings_[kv::LOAD_MODE] = "xps";
+  settings_[kv::LOAD_MODE] = "auto";
 
   keys_["write_mode"] = kv::WRITE_MODE;
   settings_[kv::WRITE_MODE] = "script_with_embedded_data";
@@ -117,6 +118,10 @@ void Settings::predefine_settings()
   keys_["log_error_processing_file"] =
       kv::LOG_ERROR_PROCESSING_FILE;
   settings_[kv::LOG_ERROR_PROCESSING_FILE] = "yes";
+
+  keys_["log_about_directory"] =
+      kv::LOG_ABOUT_DIRECTORY;
+  settings_[kv::LOG_ABOUT_DIRECTORY] = "yes";
 }
 
 void Settings::load_settings()
@@ -170,5 +175,15 @@ std::string Settings::operator() (const std::string& key_str)
 
   return (operator()(key));
 }
+
+std::string& Settings::operator[] (const kv& key)
+{ std::map<kv, std::string>::iterator pos =
+      settings_.find(key); 
+  if (pos == settings_.end())
+  { return settings_.insert(std::make_pair(key, std::string())).first->second;
+  }
+  return pos->second;
+}
+
 
 // end of file Settings.cc
