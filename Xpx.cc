@@ -267,8 +267,9 @@ ctrlEnum Xpx::lnls_files_meta_infos_load(ctrlEnum yesno_error_tolerant,
             it.path().getBaseName(), expected_signal, yesno_log_error,
             f_i.signal_by_ref(), f_i.theta_by_ref());
         if (rv != SUCCESS)
-        { post.dbg << "error (" << static_cast<int>(rv) << ") extracting theta";
-          post.dbg << " from " << it.path().getBaseName() << ".\n";
+        { // post.dbg << "error (" << static_cast<int>(rv);
+          // post.dbg << ") extracting theta";
+          // post.dbg << " from " << it.path().getBaseName() << ".\n";
 
           if (yesno_log_error == CTRL_YES)
           { post.log << "Error while extracting theta from file_name \""
@@ -348,9 +349,9 @@ ctrlEnum Xpx::yesno_is_xpd_directory()
     if (!rv == SUCCESS) 
     { return rv;
     }
-    post.dbg << "n_processed_files() = " << n_processed_files() << ".\n";
-    post.dbg << "lnls_files_meta_infos_size() = ";
-    post.dbg << lnls_files_meta_infos_size() << ".\n";
+    // post.dbg << "n_processed_files() = " << n_processed_files() << ".\n";
+    // post.dbg << "lnls_files_meta_infos_size() = ";
+    // post.dbg << lnls_files_meta_infos_size() << ".\n";
   }
 
   if (lnls_files_meta_infos_size() < 250)
@@ -377,10 +378,10 @@ ctrlEnum Xpx::lnls_files_add(LNLSFileMetaInfo f_i)
 }
 
 ctrlEnum Xpx::do_pizza_with_lnls_files_meta_infos()
-{ post.dbg << "Inside do_pizza_with_lnls_files_meta_infos()\n";
+{ // post.dbg << "Inside do_pizza_with_lnls_files_meta_infos()\n";
   lnls_files_meta_infos_sort();
-  post.dbg << "Sort done. lnls_files_meta_infos_size() = ";
-  post.dbg << lnls_files_meta_infos_size() << ".\n";
+  // post.dbg << "Sort done. lnls_files_meta_infos_size() = ";
+  // post.dbg << lnls_files_meta_infos_size() << ".\n";
   std::string old_load_mode(settings(kv::LOAD_MODE));
   settings[kv::LOAD_MODE] = "xpd";
   for (auto& f_i : lnls_files_meta_infos())
@@ -498,6 +499,14 @@ ctrlEnum Xpx::doRun()
     if (xpx_file.isDirectory())
     { instant_input_directory(xpx_path);
       rv = treat_instant_input_directory();
+      post.dbg << "Directory treated: \"";
+      post.dbg << instant_input_directory_to_string();
+      post.dbg << "\".\n"; 
+      post.dbg << "  n_processed_files() = ";
+      post.dbg << n_processed_files() << ".\n";
+      post.dbg << "  recognized as xpd lnls files:\n";
+      post.dbg << "  lnls_files_meta_infos_size() = ";
+      post.dbg << lnls_files_meta_infos_size() << ".\n";
     }
     else
     { rv = treatXPSFile(xpx_path, xpx_file);

@@ -69,11 +69,12 @@ ctrlEnum LNLSFile::check_for_another_region() // -------------------------------
 
 ctrlEnum LNLSFile::load_regions() // ------------------------------------------
 { if (!ifs_) 
-  { post.dbg << "load_regions() function called with istream.fail()==true.\n";
+  { // post.dbg << "load_regions() function called with ";
+    // post.dbg << "istream.fail()==true.\n";
     return ERR_IFSTREAM_FAILED;
   }
   while (ifs_)
-  { post.dbg << "=======> Before reading a region.\n";
+  { // post.dbg << "=======> Before reading a region.\n";
     ctrlEnum there_is_a_region_ahead = check_for_another_region();
     switch (there_is_a_region_ahead)
     { case WRN_IFSTREAM_FAILED:
@@ -92,9 +93,10 @@ ctrlEnum LNLSFile::load_regions() // ------------------------------------------
         break; // for clarity
       }
       case CTRL_YES:
-      { post.dbg << "Creating region_buf(post, source_file_name = \""
-                 << source_file_name() << "\", number = " << regions_.size() + 1
-                 << ", ifs = \"" << ifs_ << "\").\n";
+      { // post.dbg << "Creating region_buf(post, source_file_name = \"";
+        // post.dbg << source_file_name() << "\", number = ";
+        // post.dbg << regions_.size() + 1;
+        // post.dbg << ", ifs = \"" << ifs_ << "\").\n";
         std::string file_name_prefix(source_file_name());
         std::replace(file_name_prefix.begin(), file_name_prefix.end(), '.',
                      '_');
@@ -108,9 +110,10 @@ ctrlEnum LNLSFile::load_regions() // ------------------------------------------
             return r_v;
           }
         }
-        post.dbg << "Region " << region_buf.number() << " successfully read.\n";
+        // post.dbg << "Region " << region_buf.number();
+        // post.dbg << " successfully Read.\n";
         regions_.push_back(std::move(region_buf));
-        post.dbg << "Regions_.push_back worked.\n";
+        // post.dbg << "Regions_.push_back worked.\n";
         
         break; // for clarity
       }
@@ -137,7 +140,8 @@ ctrlEnum LNLSFile::setNRegionAndRegionNameAtEachRegion()
     else
     { region.region_name(aux + settings("region_infix") + std::to_string(++i));
     }
-    post.dbg << "region.region_name() = \"" << region.region_name() << "\"\n";
+    // post.dbg << "region.region_name() = \"";
+    // post.dbg << region.region_name() << "\"\n";
   }
   return SUCCESS;
 }

@@ -15,7 +15,8 @@
 #include <gsl/gsl_sf_pow_int.h> // gaussian_f
 
 ctrlEnum Region::genDefaultPlot2D() // ----------------------------------------
-{ post.dbg << __FILE__ << ":" << __LINE__ << ": " << "Begin of add_plot2.\n";
+{  // post.dbg << __FILE__ << ":" << __LINE__ << ": ";
+   // post.dbg << "Begin of add_plot2.\n";
   if (sequences().empty())
   { post.err << "Unabel to create a plot to region number " << number() \
              << ". This region is empty.\n";
@@ -51,9 +52,11 @@ ctrlEnum Region::genDefaultPlot2D() // ----------------------------------------
     plot2d.sequences_to_plot_add(4); // shirley
     plot2d.sequences_to_plot_add(5); // after shirley removal
   }
-  post.dbg << __FILE__ << ":" << __LINE__ << ": " << "Before push_back.\n";
+  // post.dbg << __FILE__ << ":" << __LINE__ << ": ";
+  // post.dbg << "Before push_back.\n";
   plot2ds_add_move(plot2d);
-  post.dbg << __FILE__ << ":" << __LINE__ << ": " << "End of add_plot2.\n";
+  // post.dbg << __FILE__ << ":" << __LINE__ << ": ";
+  // post.dbg << "End of add_plot2.\n";
 
   return SUCCESS;
 }
@@ -122,8 +125,8 @@ void Region::set_after_read_header() // ---------------------------------------
 }
 
 ctrlEnum Region::load_counts() // -----------------------------------------------
-{ post.dbg << "Just before read counts. n_counts_ = " << n_counts_\
-           << ", ifs_ = " << (ifs_? "true" : "false") << ".\n";
+{ // post.dbg << "Just before read counts. n_counts_ = " << n_counts_;
+  // post.dbg << ", ifs_ = " << (ifs_? "true" : "false") << ".\n";
   if (settings("load_mode") != "xps" && settings("load_mode") != "xpd")
   { post.err << "Unexpected value of load_mode (\"" << settings("load_mode")
              << "\").\n";
@@ -154,12 +157,12 @@ ctrlEnum Region::load_counts() // ----------------------------------------------
     { sequences().values_matrix().emplace_back(std::vector<double>(
           {energy, count, count / scans() / dwell(), 0.0, 0.0, 0.0}));
     }
-    post.dbg << " i = " << i << ", energy = " << energy << ", count = " \
-             << count << ".\n";
+    // post.dbg << " i = " << i << ", energy = " << energy;
+    // post.dbg << ", count = " << count << ".\n";
     energy += energy_step();
   }
-  post.dbg << "sequences_values_matrix_.size() == " \
-           << sequences().values_matrix().size() << "\n";
+  // post.dbg << "sequences_values_matrix_.size() == ";
+  // post.dbg << sequences().values_matrix().size() << "\n";
   return SUCCESS;
 }
 
@@ -211,11 +214,11 @@ ctrlEnum Region::Shirley(unsigned int n_iteractions) // ------------------------
   for (vsz_t i = 0; i < m.size(); ++i)
   { aux[i] = m[i][3];
   }
-  post.dbg << "Inside shirley.\naux.size() = " << aux.size() << "\n";
+  // post.dbg << "Inside shirley.\naux.size() = " << aux.size() << "\n";
   double higher_base = *(aux.begin());
   double lower_base = *(std::prev(aux.end()));
-  post.dbg << "higher_base = " << higher_base << "\nlower_base = ";
-  post.dbg << lower_base << "\n";
+  // post.dbg << "higher_base = " << higher_base << "\nlower_base = ";
+  // post.dbg << lower_base << "\n";
   std::vector<double> shirley_background(aux.size(), lower_base);
   double total_util_area;
   double partial_util_area;
@@ -226,21 +229,21 @@ ctrlEnum Region::Shirley(unsigned int n_iteractions) // ------------------------
     for (auto& c : aux)
     { total_util_area += c - *osbkgit++;
     }
-    post.dbg << "total_util_area = " << total_util_area << "\n";
+    // post.dbg << "total_util_area = " << total_util_area << "\n";
 
     partial_util_area = 0;
     auto rit_cs = aux.rbegin();
     auto osbkgrit = shirley_background.rbegin();
     while (rit_cs != aux.rend())
     { partial_util_area += *rit_cs - *osbkgrit;
-      post.dbg << *rit_cs << "(" << partial_util_area << "); ";
+      // post.dbg << *rit_cs << "(" << partial_util_area << "); ";
       *osbkgrit =
           lower_base +
           (higher_base - lower_base) * (partial_util_area / total_util_area);
       ++rit_cs;
       ++osbkgrit;
     }
-    post.dbg << "\n";
+    // post.dbg << "\n";
   }
 
   double A_max = 0;
@@ -344,7 +347,7 @@ ctrlEnum Region::Fit(unsigned int max_n_iters)  // -----------------------------
 { //need check n_iteractions < 0
   std::vector<std::vector<double>>& m = sequences().values_matrix(); // simplify
 
-  post.dbg << "Inside Fit.\naux.size() = " << m.size() << "\n";
+  // post.dbg << "Inside Fit.\naux.size() = " << m.size() << "\n";
   const gsl_multifit_fdfsolver_type* T;
   gsl_multifit_fdfsolver *s;
   int status;
@@ -356,9 +359,10 @@ ctrlEnum Region::Fit(unsigned int max_n_iters)  // -----------------------------
   double r_s[n];
   struct data d = {n, y, r_s};
   gsl_multifit_function_fdf f;
-  post.dbg << "Before iteractions x_init = {sequences().A(), sequences().mu(), " \
-           << "sequences().sigma()} = {" << sequences().A() << ","\
-           << sequences().mu() << "," << sequences().sigma() << "}\n";
+  // post.dbg << "Before iteractions x_init = {sequences().A(),";
+  // post.dbg << " sequences().mu(), sequences().sigma()} = {";
+  // post.dbg << sequences().A() << "," << sequences().mu() << ",";
+  // post.dbg << sequences().sigma() << "}\n";
   double x_init[3] = {sequences().A(), sequences().mu(), sequences().sigma()};
   gsl_vector_view x = gsl_vector_view_array(x_init, p);
   f.f = &Region::gaussian_f;
@@ -369,7 +373,7 @@ ctrlEnum Region::Fit(unsigned int max_n_iters)  // -----------------------------
   for (i = 0; i < n; ++i)
   { y[i] = m[i][5];
     r_s[i] = 1.0;
-    post.dbg << "y[i = " << i << "] = " << y[i] << "\n";
+    // post.dbg << "y[i = " << i << "] = " << y[i] << "\n";
   }
   T = gsl_multifit_fdfsolver_lmsder;
   s = gsl_multifit_fdfsolver_alloc(T, n, p);
@@ -378,22 +382,22 @@ ctrlEnum Region::Fit(unsigned int max_n_iters)  // -----------------------------
   { ++iter;
     status = gsl_multifit_fdfsolver_iterate(s);
     if (status)
-    { post.dbg << "status = " << status << " = " << gsl_strerror(status)
-               << " from within if status\n ";
+    { // post.dbg << "status = " << status << " = " << gsl_strerror(status);
+      // post.dbg << " from within if status\n ";
           break;
     }
     status = gsl_multifit_test_delta(s->dx, s->x, 1e-4, 1e-4);
   } while (status == GSL_CONTINUE && iter < max_n_iters);
-  post.dbg << "iter = " << iter << ".\n";
+  // post.dbg << "iter = " << iter << ".\n";
 
   sequences().A(gsl_vector_get(s->x, 0));
   sequences().mu(energy_high()-(gsl_vector_get(s->x,
         1))/(n)*(energy_high()-energy_low()+1));
   sequences().sigma((gsl_vector_get(s->x, 2))/(n)*(energy_high()-energy_low()+1));
-  post.dbg << "After iteractions x_init = {sequences().A(), sequences().mu(), " \
-           << "sequences().sigma()} = {" << sequences().A() << "," <<
-           sequences().mu()\
-           << "," << sequences().sigma() << "}\n";
+  // post.dbg << "After iteractions x_init = {sequences().A(), ";
+  // post.dbg << "sequences().mu(), sequences().sigma()} = {";
+  // post.dbg << sequences().A() << "," << sequences().mu();
+  // post.dbg << "," << sequences().sigma() << "}\n";
   sequences().area(area6sigma*sequences().A()*sequences().sigma());
   return SUCCESS;
 }
@@ -411,13 +415,15 @@ void Region::set_after_load_counts() // ---------------------------------------
 
     { unsigned int max_n_iters =
           std::stoul(settings("unsigned_int_maximum_number_of_iteractions"));
-      post.dbg << "{sequences().A(), sequences().mu(), sequences().sigma()} = {"\
-               << sequences().A() << ", " << sequences().mu() << ", "\
-               << sequences().sigma() << "}\n";
+      // post.dbg << "{sequences().A(), sequences().mu(),";
+      // post.dbg << " sequences().sigma()} = {";
+      // post.dbg << sequences().A() << ", " << sequences().mu() << ", ";
+      // post.dbg << sequences().sigma() << "}\n";
       Fit(max_n_iters);
-      post.dbg << "{sequences().A(), sequences().mu(), sequences().sigma()} = {"\
-               << sequences().A() << ", " << sequences().mu() << ", "\
-               << sequences().sigma() << "}\n";
+      // post.dbg << "{sequences().A(), sequences().mu(),";
+      // post.dbg << " sequences().sigma()} = {";
+      // post.dbg << sequences().A() << ", " << sequences().mu() << ", ";
+      // post.dbg << sequences().sigma() << "}\n";
     }
   }
 }
@@ -445,46 +451,12 @@ ctrlEnum Region::load() // -----------------------------------------------------
 }
 
 void Region::writeAll() // -----------------------
-{ int j = 0;  // i_plot_scripts_of_a_region
+{ int j = 0;
   for (auto& plot2d : plot2ds())
-  {
-    post.dbg << "Writing the plot scripts for plot number " << ++j << ".\n";
+  { ++j;
+    // post.dbg << "Writing the plot scripts for plot number " << j << ".\n";
     plot2d.writePlot();
   }
 }
-
-/*
-   // old shirley with vector
-   std::vector<double> Region::shirleyMatrixColumn(const std::vector<double> &v)
-{ int n = v.size();
-  int begin = 0;
-  int end = n-1;
-  double a = v[begin];
-  double b = v[end];
-  double sum1; double sum2;
-  std::vector<double> background(n);
-  std::vector<double> background0(n,b);
-  for (int i0 = 1; i0 <= 6; ++i0) // i0 = i_iteraction
-  { for (int i1 = end; i1 >= begin; --i1) // i1 = i_count
-    { a = v[begin]; b = v[end];
-      sum1 = 0; sum2 = 0;
-      for (int i2 = end; i2 >= i1; --i2) // i2 = i_count_low_energy_partial_area
-        sum1 += v[i2] - background0[i2];
-      for (int i3 = end; i3 >= begin; --i3) // i3 = i_count_total_area
-        sum2 += v[i3] - background0[i3];
-      if (sum2 == 0) // no peak
-      { for (int i = i1; i >=begin; --i)
-        { background[i] = 10000000; // todo better way to flag this data error
-          i1 = begin - 1; // quits the for loop
-        }
-      }
-      else
-        background[i1] = b + (a-b) * sum1/sum2;
-    }
-    background0 = background;
-  }
-  return background;
-}
-*/
 
 // end of Region.cc
