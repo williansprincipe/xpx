@@ -12,17 +12,53 @@
 
 #include <string>
 #include <vector>
+#include <memory>
+
+class RsrcIfs
+{public:
+  // Default constructor
+  RsrcIfs()
+  : pifs_(new std::ifstream) { }
+
+  // Copy constructor
+  RsrcIfs(const RsrcIfs& other) = delete;
+
+  // Move constructor noexcept needed to enable optimizations in containers
+  RsrcIfs(RsrcIfs&& other) noexcept : pifs_(std::move(other.pifs_)) { }
+
+  // Destructor. best-practice: explicitly annotated with noexcept
+  ~RsrcIfs() noexcept {}
+
+  // Copy assignment operator
+  RsrcIfs& operator=(const RsrcIfs& other) = delete;
+
+  // Move assignment operator
+  RsrcIfs& operator=(RsrcIfs&& other) = delete;
+
+  std::ifstream& ifs() { return *pifs_; }
+
+ private:
+  std::unique_ptr<std::ifstream> pifs_;
+};
 
 class LNLSFile
 {
  public:
   LNLSFile()=delete;
-  LNLSFile(Settings& settings, Post& post, const Poco::Path& directory, const std::string& source_file_name)
+
+  LNLSFile(const LNLSFile&) = delete;
+  LNLSFile(LNLSFile&&) = default;
+  LNLSFile& operator=(const LNLSFile&) = delete;
+  LNLSFile& operator=(LNLSFile&&) = default;
+
+  LNLSFile(Settings& settings, Post& post, const std::string& directory, const std::string& source_file_name)
       : settings(settings),
         post(post),
-        path_(Poco::Path(directory,source_file_name)),
+        directory_(directory),
         source_file_name_(source_file_name),
+        path_(Poco::Path(directory,source_file_name)),
         loaded_(false) { }
+
  ~LNLSFile()=default;
 
   ctrlEnum open_file_and_read_header();
@@ -40,6 +76,10 @@ class LNLSFile
   void displayRegionsInfo();
   ctrlEnum doTest();
 
+  void directory(const std::string& directory)
+  { directory_ = directory; }
+  const std::string& directory() const { return directory_; }
+
   void source_file_name(const std::string& source_file_name)
   { source_file_name_ = source_file_name; }
   const std::string& source_file_name() const { return source_file_name_; }
@@ -48,14 +88,17 @@ class LNLSFile
 
   const bool loaded() const { return loaded_; }
 
+  std::ifstream& ifs() { return ifs_.ifs(); }
+
  private:
   Settings& settings;
   Post& post;
-  Poco::Path path_;
+  std::string directory_;
   std::string source_file_name_;
+  Poco::Path path_;
   bool loaded_;
   std::string experiment_;
-  std::ifstream ifs_;
+  RsrcIfs ifs_;
   std::vector<Region> regions_;
 };
 

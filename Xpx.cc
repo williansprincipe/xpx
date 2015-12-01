@@ -372,9 +372,9 @@ void Xpx::lnls_files_meta_infos_sort()
 }
 
 ctrlEnum Xpx::lnls_files_add(LNLSFileMetaInfo f_i)
-{ LNLSFile lnls_file(settings, post, instant_input_directory(), f_i.name());
+{ LNLSFile lnls_file(settings, post, instant_input_directory().toString(), f_i.name());
   lnls_file.load();
-  // HERE HERE HERE HERE 
+  lnls_files_add(std::move(lnls_file));
   return SUCCESS;
 }
 
@@ -385,12 +385,14 @@ ctrlEnum Xpx::do_pizza_with_lnls_files_meta_infos()
   // post.dbg << lnls_files_meta_infos_size() << ".\n";
   std::string old_load_mode(settings(kv::LOAD_MODE));
   settings[kv::LOAD_MODE] = "xpd";
+  post.dbg << "Before lnls_files creation.\n";
   for (auto& f_i : lnls_files_meta_infos())
   { //post.dbg << f_i.name() << ", " << static_cast<int>(f_i.signal()) << ", ";
     //post.dbg << f_i.theta() << ", " << f_i.phi() << ".\n";
     lnls_files_add(f_i);
   }
   settings[kv::LOAD_MODE] = old_load_mode;
+  post.dbg << "lnls_files_size() = " << lnls_files_size() << "\n";
   return SUCCESS;
 }
 

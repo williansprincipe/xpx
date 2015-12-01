@@ -58,6 +58,7 @@ class Xpx
   bool is_two_chars_a_month(char c1, char c2);
   bool is_lnls_file_name(const std::string& file_name);
   int lnls_files_count();
+  int lnls_files_size() { return lnls_files_.size(); }
   ctrlEnum get_theta_from_base_name(const std::string& base_name,
                                     ctrlEnum expected_signal,
                                     ctrlEnum yesno_log_error,
@@ -71,6 +72,12 @@ class Xpx
                                       ctrlEnum yesno_log_error);
   ctrlEnum yesno_is_xpd_directory();
   ctrlEnum lnls_files_add(LNLSFileMetaInfo f_i);
+  void lnls_files_add(LNLSFile lnls_file)
+  { lnls_files_.push_back(std::move(lnls_file));
+  }
+  void lnls_files_emplace_back(Settings& settings, Post& post, const std::string& directory, const std::string& source_file_name)
+  { lnls_files_.emplace_back(settings, post, directory, source_file_name);
+  }
   ctrlEnum do_pizza_with_lnls_files_meta_infos();
   ctrlEnum do_all_xps_graphs_from_this_xpx_path();
   ctrlEnum treat_instant_input_directory();

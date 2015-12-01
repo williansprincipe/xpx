@@ -1,5 +1,15 @@
-Error while extracting theta from file_name "template".
-Error while extracting theta from file_name "gen_lnls_files_names".
-About directory "raw/":
-  It has 25602, from which 25600 have typical LNLS file names.
-  Intervals (degrees): 9 <= theta <= 72 and 0 <= phi <= 399.
+Error while extracting theta from file_name "read223multi".
+Error while extracting theta from file_name "result_evap".
+Error while extracting theta from file_name "read_lnls_v4".
+Error while extracting theta from file_name "mpfitfun".
+Error while extracting theta from file_name "read228p4".
+Error while extracting theta from file_name "mpfit".
+Error while extracting theta from file_name "readlnlsv3ni".
+Error while extracting theta from file_name "readlnlsv3bi".
+Error while extracting theta from file_name "polar_scan".
+Error while extracting theta from file_name "readlnlsv3se".
+Error while extracting theta from file_name "readlnlsv3rh".
+Error while extracting theta from file_name "read228p3".
+About directory "raw":
+  It has 978, from which 966 have typical LNLS file names.
+  Intervals (degrees): 6 <= theta <= 72 and 0 <= phi <= 123.

@@ -14,23 +14,23 @@
 ctrlEnum LNLSFile::open_file_and_read_header() // -------------------------------------------
 { ctrlEnum r_v = SUCCESS;
   
-  ifs_.open(path_to_string());
-  if (!ifs_)
+  ifs().open(path_to_string());
+  if (!ifs())
   { r_v = ERR_UNABLE_TO_OPEN_FILE;
     post.err << "Unable to open file \"" << source_file_name()
              << "\".\n";
     return r_v;
   }
 
-  if (!utl::safeGetline(ifs_,experiment_))
+  if (!utl::safeGetline(ifs(),experiment_))
   { r_v = ERR_UNABLE_TO_READ_EVEN_THE_FIRST_LINE;
     post.err << "Unable to read even the first line of file \""
              << source_file_name() << "\".\n";
     return r_v;
   }
 
-  if (!ifs_)
-  { if (ifs_.eof())
+  if (!ifs())
+  { if (ifs().eof())
     { r_v = ERR_UNEXPECTED_EOF;
       post.err << "Unexpected end of file \""
                << source_file_name() << "\" before first region header.\n"
@@ -50,30 +50,30 @@ ctrlEnum LNLSFile::open_file_and_read_header() // ------------------------------
 }
 
 ctrlEnum LNLSFile::check_for_another_region() // ----------------------------------
-{ if (!ifs_)
+{ if (!ifs())
   { return WRN_IFSTREAM_FAILED;
   }
 
   double test_buffer;
-  std::ifstream::pos_type initial_position = ifs_.tellg();
-  if (!(ifs_ >> test_buffer)) // first field of region
-  { if (ifs_.eof())
+  std::ifstream::pos_type initial_position = ifs().tellg();
+  if (!(ifs() >> test_buffer)) // first field of region
+  { if (ifs().eof())
     { return CTRL_NO;
     }
     return WRN_READ_FAILED;
   }
 
-  ifs_.seekg(initial_position);
+  ifs().seekg(initial_position);
   return CTRL_YES; // assumed 
 }
 
 ctrlEnum LNLSFile::load_regions() // ------------------------------------------
-{ if (!ifs_) 
+{ if (!ifs()) 
   { // post.dbg << "load_regions() function called with ";
     // post.dbg << "istream.fail()==true.\n";
     return ERR_IFSTREAM_FAILED;
   }
-  while (ifs_)
+  while (ifs())
   { // post.dbg << "=======> Before reading a region.\n";
     ctrlEnum there_is_a_region_ahead = check_for_another_region();
     switch (there_is_a_region_ahead)
@@ -96,12 +96,12 @@ ctrlEnum LNLSFile::load_regions() // ------------------------------------------
       { // post.dbg << "Creating region_buf(post, source_file_name = \"";
         // post.dbg << source_file_name() << "\", number = ";
         // post.dbg << regions_.size() + 1;
-        // post.dbg << ", ifs = \"" << ifs_ << "\").\n";
+        // post.dbg << ", ifs = \"" << ifs() << "\").\n";
         std::string file_name_prefix(source_file_name());
         std::replace(file_name_prefix.begin(), file_name_prefix.end(), '.',
                      '_');
         Region region_buf(settings, post, source_file_name(),
-                          regions_.size() + 1, ifs_, file_name_prefix);
+                          regions_.size() + 1, ifs(), file_name_prefix);
 
         { ctrlEnum r_v;
           if ((r_v = region_buf.load()) != SUCCESS)
