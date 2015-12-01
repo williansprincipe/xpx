@@ -27,10 +27,10 @@ ctrlEnum Region::genDefaultPlot2D() // ----------------------------------------
   plot2d.source_file_name(source_file_name());
   plot2d.region_number(number());
   plot2d.label(label());
-  plot2d.script_file_path_parse(
+  plot2d.script_file_path_parse(settings(kv::OUTPUT_DIRECTORY_NAME) + "/" +
       region_name() + "." + settings("script_file_extension_for_plot_program_" +
                                      settings("plot_program")));
-  plot2d.data_file_path_parse(
+  plot2d.data_file_path_parse(settings(kv::OUTPUT_DIRECTORY_NAME) + "/" +
       region_name() + "." + settings("data_file_extension_for_plot_program_" +
                                      settings("plot_program")));
   plot2d.image_file_name(region_name() + "." +
@@ -107,7 +107,7 @@ void Region::set_default_plot2d_sequences_names() // --------------------------
 { sequences().names_add(settings("sequence_name_for_energy"));
   sequences().names_add(settings("sequence_name_for_count"));
   sequences().names_add(settings("sequence_name_for_count_per_second"));
-  if (settings("load_mode") == "xpd")
+  if (settings(kv::LOAD_MODE) == "xpd")
   { sequences().names_add(
         settings("sequence_name_for_count_per_second_smoothed"));
     sequences().names_add(
@@ -450,7 +450,7 @@ ctrlEnum Region::load() // -----------------------------------------------------
   return SUCCESS;
 }
 
-void Region::writeAll() // -----------------------
+void Region::write_all() // -----------------------
 { int j = 0;
   for (auto& plot2d : plot2ds())
   { ++j;

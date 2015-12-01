@@ -245,7 +245,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 21) / 42)
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -592,12 +592,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 138 - ((19 * winheight(0) + 20) / 40)
+let s:l = 138 - ((22 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 138
-normal! 03|
+normal! 045|
 lcd ~/xpx
 wincmd w
 argglobal
@@ -702,12 +702,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 165 - ((35 * winheight(0) + 20) / 40)
+let s:l = 80 - ((38 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-165
-normal! 0
+80
+normal! 020|
 lcd ~/xpx
 wincmd w
 exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
@@ -722,8 +722,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
-exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+exe 'vert 1resize ' . ((&columns * 78 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 91 + 85) / 170)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -825,12 +825,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 67 - ((19 * winheight(0) + 20) / 40)
+let s:l = 41 - ((37 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-67
-normal! 0
+41
+normal! 010|
 lcd ~/xpx
 wincmd w
 argglobal
@@ -935,16 +935,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 457 - ((19 * winheight(0) + 20) / 40)
+let s:l = 26 - ((12 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-457
-normal! 067|
+26
+normal! 03|
 lcd ~/xpx
 wincmd w
-exe 'vert 1resize ' . ((&columns * 87 + 85) / 170)
-exe 'vert 2resize ' . ((&columns * 82 + 85) / 170)
+exe 'vert 1resize ' . ((&columns * 78 + 85) / 170)
+exe 'vert 2resize ' . ((&columns * 91 + 85) / 170)
 tabedit ~/xpx/LNLSFile.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -1058,12 +1058,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 59 - ((5 * winheight(0) + 20) / 40)
+let s:l = 62 - ((32 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-59
-normal! 09|
+62
+normal! 07|
 lcd ~/xpx
 wincmd w
 argglobal
@@ -1168,12 +1168,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 17 - ((16 * winheight(0) + 20) / 40)
+let s:l = 189 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-17
-normal! 08|
+189
+normal! 048|
 lcd ~/xpx
 wincmd w
 exe 'vert 1resize ' . ((&columns * 89 + 85) / 170)
@@ -1291,12 +1291,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 61 - ((20 * winheight(0) + 20) / 40)
+let s:l = 78 - ((15 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-61
-normal! 054|
+78
+normal! 03|
 lcd ~/xpx
 wincmd w
 argglobal
@@ -1401,12 +1401,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 377 - ((22 * winheight(0) + 20) / 40)
+let s:l = 393 - ((32 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-377
-normal! 038|
+393
+normal! 039|
 lcd ~/xpx
 wincmd w
 2wincmd w
@@ -2927,12 +2927,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 67 - ((37 * winheight(0) + 19) / 38)
+let s:l = 58 - ((19 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-67
-normal! 035|
+58
+normal! 063|
 lcd ~/xpx
 wincmd w
 argglobal
@@ -3037,12 +3037,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 183 - ((31 * winheight(0) + 19) / 38)
+let s:l = 125 - ((9 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-183
-normal! 012|
+125
+normal! 0
 lcd ~/xpx
 wincmd w
 2wincmd w

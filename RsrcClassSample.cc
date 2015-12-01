@@ -1,7 +1,8 @@
 // RsrcClassSample.cc
 // I get this from stackoverflow (or maybe cppreference.com) 
 // I had to rush out to pick up the children at school and didn't take note
-// of the source
+// of the source.
+// found!!! It came from https://en.wikipedia.org/wiki/Rule_of_three_%28C%2B%2B_programming%29
 // wpfernandes 2015-11-30 14h00min
 
 class Foo

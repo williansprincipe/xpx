@@ -54,7 +54,8 @@ enum class kv
   LOG_ERROR_PROCESSING_FILE                                = 41,
   LOG_ABOUT_DIRECTORY                                      = 42,
   AUTO                                                     = 43,
-  TO_AUTOMATIZE_LAST_KNOWN                                 = 44,
+  OUTPUT_DIRECTORY_NAME                                    = 44,
+  TO_AUTOMATIZE_LAST_KNOWN                                 = 45,
   TO_RESERVE_ROOM                                          = 1023
 };
 

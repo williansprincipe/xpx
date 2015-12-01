@@ -51,12 +51,15 @@ class LNLSFile
   LNLSFile& operator=(const LNLSFile&) = delete;
   LNLSFile& operator=(LNLSFile&&) = default;
 
-  LNLSFile(Settings& settings, Post& post, const std::string& directory, const std::string& source_file_name)
+  LNLSFile(Settings& settings, Post& post, const std::string& directory,
+           const std::string& source_file_name, int theta, int phi)
       : settings(settings),
         post(post),
         directory_(directory),
         source_file_name_(source_file_name),
-        path_(Poco::Path(directory,source_file_name)),
+        path_(Poco::Path(directory, source_file_name)),
+        theta_(theta),
+        phi_(phi),
         loaded_(false) { }
 
  ~LNLSFile()=default;
@@ -64,10 +67,11 @@ class LNLSFile
   ctrlEnum open_file_and_read_header();
   ctrlEnum check_for_another_region();
   ctrlEnum load_regions();
+  std::vector<Region>& regions() { return regions_; }
   ctrlEnum load();
   ctrlEnum setNRegionAndRegionNameAtEachRegion();
   void genAll();
-  void writeAll();
+  void write_all();
 
   void displaySequencesInfo(Sequences& sequences);
   void displayPlot2DInfo(Plot2D& plot2d);
@@ -84,6 +88,14 @@ class LNLSFile
   { source_file_name_ = source_file_name; }
   const std::string& source_file_name() const { return source_file_name_; }
 
+  void theta(const int theta)
+  { theta_ = theta; }
+  int theta() const { return theta_; }
+
+  void phi(const int phi)
+  { phi_ = phi; }
+  int phi() const { return phi_; }
+
   std::string path_to_string() { return path_.toString(); }
 
   const bool loaded() const { return loaded_; }
@@ -96,6 +108,8 @@ class LNLSFile
   std::string directory_;
   std::string source_file_name_;
   Poco::Path path_;
+  int theta_;
+  int phi_;
   bool loaded_;
   std::string experiment_;
   RsrcIfs ifs_;

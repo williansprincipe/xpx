@@ -100,7 +100,7 @@ ctrlEnum LNLSFile::load_regions() // ------------------------------------------
         std::string file_name_prefix(source_file_name());
         std::replace(file_name_prefix.begin(), file_name_prefix.end(), '.',
                      '_');
-        Region region_buf(settings, post, source_file_name(),
+        Region region_buf(settings, post, source_file_name(), theta(), phi(),
                           regions_.size() + 1, ifs(), file_name_prefix);
 
         { ctrlEnum r_v;
@@ -177,11 +177,11 @@ void LNLSFile::genAll()
   }
 }
 
-void LNLSFile::writeAll()
+void LNLSFile::write_all()
 { int i = 0; // i_regions
   for (auto& region : regions_)
   { post.dbg << "Writing plot scripts for region number " << ++i << ".\n";
-    region.writeAll();
+    region.write_all();
   }
 }
 
@@ -316,7 +316,7 @@ ctrlEnum LNLSFile::doTest() // ------------------------------------------------
 
   post.msg << "\nGenerating one pyxplot script file for each plot2d... ====\n";
 
-  writeAll();
+  write_all();
 
   post.msg << "\nEnd of regiontest.\n";
    

@@ -54,10 +54,13 @@ class Region
 {public:
   Region() = delete;
   Region(Settings& settings, Post& post, const std::string& source_file_name,
+         int theta, int phi, 
          int number, std::ifstream& ifs, const std::string& region_name)
       : settings(settings),
         post(post),
         source_file_name_(source_file_name),
+        theta_(theta),
+        phi_(phi),
         number_(number),
         ifs_(ifs)
   { }
@@ -72,13 +75,23 @@ class Region
   ctrlEnum genDefaultPlot2D();
   void genOnePlotPerRegion();
   void genOnePlotScriptPerPlot();
-  void writeAll();
+  void write_all();
 
   // accessors and mutators ===================================================
 
   const std::string& region_name() { return region_name_; }
   void region_name(const std::string& region_name) { region_name_
     = region_name;
+  }
+
+  const int theta() const { return theta_; }
+  void theta(const int theta)
+  { theta_ = theta;
+  }
+
+  const int phi() const { return phi_; }
+  void phi(const int phi)
+  { phi_ = phi;
   }
 
   const std::string& label() const { return label_; }
@@ -122,6 +135,8 @@ class Region
   Post& post;
   const double area6sigma = 2.49986088948310; // sqrt(2*pi)*erf(3/2*sqrt(2))
   const std::string& source_file_name_;
+  int theta_;
+  int phi_;
   const int number_;
   std::ifstream& ifs_;
 

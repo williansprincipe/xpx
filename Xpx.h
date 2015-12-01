@@ -75,9 +75,8 @@ class Xpx
   void lnls_files_add(LNLSFile lnls_file)
   { lnls_files_.push_back(std::move(lnls_file));
   }
-  void lnls_files_emplace_back(Settings& settings, Post& post, const std::string& directory, const std::string& source_file_name)
-  { lnls_files_.emplace_back(settings, post, directory, source_file_name);
-  }
+  ctrlEnum lnls_files_write_all();
+  ctrlEnum write_pizza();
   ctrlEnum do_pizza_with_lnls_files_meta_infos();
   ctrlEnum do_all_xps_graphs_from_this_xpx_path();
   ctrlEnum treat_instant_input_directory();

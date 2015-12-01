@@ -372,9 +372,32 @@ void Xpx::lnls_files_meta_infos_sort()
 }
 
 ctrlEnum Xpx::lnls_files_add(LNLSFileMetaInfo f_i)
-{ LNLSFile lnls_file(settings, post, instant_input_directory().toString(), f_i.name());
+{ LNLSFile lnls_file(settings, post, instant_input_directory().toString(),
+    f_i.name(), f_i.theta(), f_i.phi());
   lnls_file.load();
   lnls_files_add(std::move(lnls_file));
+  return SUCCESS;
+}
+
+ctrlEnum Xpx::lnls_files_write_all()
+{ for (auto& lnls_file : lnls_files())
+  { lnls_file.write_all();
+  }
+  return SUCCESS;
+}
+
+ctrlEnum Xpx::write_pizza()
+{ for (auto& lnls_file : lnls_files())
+  { 
+    // Here, here, here!!!
+    // double sum_of_areas_of_one_theta = 0;
+    for (auto& region : lnls_file.regions())
+    { post.dbg << "region.theta() = " << region.theta() << ", ";
+      post.dbg << "region.phi() = " << region.phi() << " and ";
+      post.dbg << "region.sequences().area() = ";
+      post.dbg << region.sequences().area() << ".\n";
+    }
+  }
   return SUCCESS;
 }
 
@@ -510,6 +533,7 @@ ctrlEnum Xpx::doRun()
       post.dbg << "  recognized as xpd lnls files:\n";
       post.dbg << "  lnls_files_meta_infos_size() = ";
       post.dbg << lnls_files_meta_infos_size() << ".\n";
+      write_pizza();
     }
     else
     { rv = treatXPSFile(xpx_path, xpx_file);

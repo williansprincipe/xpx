@@ -122,6 +122,10 @@ void Settings::predefine_settings()
   keys_["log_about_directory"] =
       kv::LOG_ABOUT_DIRECTORY;
   settings_[kv::LOG_ABOUT_DIRECTORY] = "yes";
+
+  keys_["output_directory_name"] =
+      kv::OUTPUT_DIRECTORY_NAME;
+  settings_[kv::OUTPUT_DIRECTORY_NAME] = "xpx_output";
 }
 
 void Settings::load_settings()
