@@ -23,6 +23,8 @@ class Sequences
   Sequences()=default;
  ~Sequences()=default;
 
+  typedef std::vector<double> vd;
+
   bool empty() { return values_matrix_.empty(); }
   vsz_t number_of() { return names_.size(); }
   vsz_t size_of_one() { return values_matrix_.size(); }
@@ -30,7 +32,7 @@ class Sequences
   std::vector<std::string>& names() { return names_; }
   std::string& name(vsz_t index) { return names_[index]; }
   void names_add(std::string name) { names_.push_back(name); }
-  std::vector<std::vector<double>>& values_matrix() { return values_matrix_; }
+  std::vector<vd>& values_matrix() { return values_matrix_; }
 
   double A() { return A_; }
   void A(double A) { A_ = A; }
@@ -43,7 +45,7 @@ class Sequences
      
  private:
   std::vector<std::string> names_;
-  std::vector<std::vector<double>> values_matrix_;
+  std::vector<vd> values_matrix_;
   double A_;
   double mu_;
   double sigma_;

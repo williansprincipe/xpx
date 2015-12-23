@@ -47,10 +47,10 @@ struct ArgsCtrlStruct //----------------------------------------------
   std::string error_msg;
 };
 
-struct OptionStruct //------------------------------------------------
-{ OptionStruct()=default;
-  OptionStruct(std::string id, std::string value) : id{id}, value{value} { }
- ~OptionStruct()=default;
+struct OptionStruct  //------------------------------------------------
+{ OptionStruct() = default;
+  OptionStruct(std::string id, std::string value) : id(id), value(value) {}
+  ~OptionStruct() = default;
   std::string id;
   std::string value;
 };
@@ -73,7 +73,7 @@ class Parser //--------------------------------------------------
   int gatherOptions(std::vector<std::string>& cmd_line_args_buffer);
   void options_add(std::string id, std::string value)
   { options_.emplace_back(id, value);
-  }
+  };
   int checkArguments();
   ctrlEnum parse(std::vector<std::string> cmd_line_args_buffer);
   void eraseFirstArgument() { if (!args_.empty()) args_.erase(args_.begin()); }
